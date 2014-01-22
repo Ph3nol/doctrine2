@@ -602,6 +602,14 @@ class YamlDriver extends FileDriver
             }
         }
 
+        // Evaluate attributeIgnore
+        if (isset($element['attributeIgnore']) && is_array($element['attributeIgnore'])) {
+
+            foreach ($element['attributeIgnore'] as $fieldName => $attributeIgnoreElement) {
+                $metadata->setAttributeIgnore($fieldName);
+            }
+        }
+
         // Evaluate lifeCycleCallbacks
         if (isset($element['lifecycleCallbacks'])) {
             foreach ($element['lifecycleCallbacks'] as $type => $methods) {

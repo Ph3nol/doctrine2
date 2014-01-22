@@ -2117,6 +2117,22 @@ class ClassMetadataInfo implements ClassMetadata
     }
 
     /**
+     * Sets the ignore for a mapped field.
+     *
+     * @param string $fieldName
+     *
+     * @throws MappingException
+     */
+    public function setAttributeIgnore($fieldName)
+    {
+        if (!isset($this->fieldMappings[$fieldName])) {
+            throw MappingException::invalidIgnoreFieldName($this->name, $fieldName);
+        }
+
+        unset($this->fieldMappings[$fieldName]);
+    }
+
+    /**
      * Checks whether a mapped field is inherited from an entity superclass.
      *
      * @param string $fieldName

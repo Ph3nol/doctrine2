@@ -537,6 +537,16 @@ class XmlDriver extends FileDriver
             }
         }
 
+        // Evaluate attribute-ignores
+        if (isset($xmlRoot->{'attribute-ignores'})) {
+            foreach ($xmlRoot->{'attribute-ignores'}->{'attribute-ignore'} as $ignoreElement) {
+                $fieldName = (string) $ignoreElement['name'];
+                foreach ($ignoreElement->field as $field) {
+                    $metadata->setAttributeIgnore($fieldName);
+                }
+            }
+        }
+
         // Evaluate association-overrides
         if (isset($xmlRoot->{'association-overrides'})) {
             foreach ($xmlRoot->{'association-overrides'}->{'association-override'} as $overrideElement) {

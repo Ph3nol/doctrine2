@@ -435,6 +435,14 @@ class AnnotationDriver extends AbstractAnnotationDriver
             }
         }
 
+        // Evaluate AttributeIgnores annotation
+        if (isset($classAnnotations['Doctrine\ORM\Mapping\AttributeIgnores'])) {
+            $attributeIgnoresAnnot = $classAnnotations['Doctrine\ORM\Mapping\AttributeIgnores'];
+            foreach ($attributeIgnoresAnnot->value as $attributeIgnoreAnnot) {
+                $metadata->setAttributeIgnore($attributeIgnoreAnnot->name);
+            }
+        }
+
         // Evaluate EntityListeners annotation
         if (isset($classAnnotations['Doctrine\ORM\Mapping\EntityListeners'])) {
             $entityListenersAnnot = $classAnnotations['Doctrine\ORM\Mapping\EntityListeners'];
