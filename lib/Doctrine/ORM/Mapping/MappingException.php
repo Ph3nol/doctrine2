@@ -143,6 +143,19 @@ class MappingException extends \Doctrine\ORM\ORMException
     }
 
     /**
+     * Exception for invalid property name ignore.
+     *
+     * @param string $className The entity's name.
+     * @param string $fieldName
+     *
+     * @return MappingException
+     */
+    public static function invalidIgnoreFieldName($className, $fieldName)
+    {
+        return new self("Invalid field ignore named '$fieldName' for class '$className'.");
+    }
+
+    /**
      * @param string $className
      * @param string $fieldName
      *
